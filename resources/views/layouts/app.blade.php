@@ -70,7 +70,13 @@
                 </div>
             </div>
         </nav>
-
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @if(session()->has('message'))
+                    <div class="alert alert-info">{{ session('message')}}</div>
+                @endif
+            </div>
+        </div>
         @yield('content')
     </div>
 
