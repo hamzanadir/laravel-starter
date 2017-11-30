@@ -8,7 +8,7 @@
 @section('content')
     <div class="register-box">
     <div class="register-logo">
-        <a href=""><b>Nickel </b>IT</a>
+        <a href="{{ route('front.index') }}"><b>Nickel </b>IT</a>
     </div>
 
     <div class="register-box-body">

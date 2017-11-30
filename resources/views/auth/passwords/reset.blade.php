@@ -3,7 +3,7 @@
 @section('content')
 <div class="login-box">
     <div class="login-logo">
-        <a href=""><b>Nickel</b>IT</a>
+        <a href="{{ route('front.index') }}"><b>Nickel</b>IT</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
