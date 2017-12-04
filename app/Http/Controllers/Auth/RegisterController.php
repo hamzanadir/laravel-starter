@@ -11,6 +11,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\UserCreated;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Profile;
 
 class RegisterController extends Controller
 {
@@ -83,11 +85,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $user=null;
+        DB::transaction(function() use($data, &$user){
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
+		    $user->profile()->save(new Profile);
+        });
+        return $user;
     }
 
     /**

@@ -19,3 +19,6 @@ Auth::routes();
 Route::get('register/verify/{token}','Auth\RegisterController@verify')->name('verify');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::name('profile.show')->get('/profile','UserController@showProfile');
+Route::name('profile.update')->post('/profile','UserController@updateProfile');

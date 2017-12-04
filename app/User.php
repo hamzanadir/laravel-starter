@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Profile;
 
 class User extends Authenticatable
 {
@@ -61,4 +62,13 @@ class User extends Authenticatable
             $user->verification_token = self::generateVerificationCode();
         });
     }
+
+    /**
+	 * a user has one profile
+	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
+	 */
+	public function profile()
+	{
+		return $this->hasOne(Profile::class);
+	}
 }

@@ -224,7 +224,7 @@
                 <img src="{{ asset('bower_components/admin-lte/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->name }} - Web Developer
+                  {{ Auth::user()->profile->first_name }}  {{ Auth::user()->profile->last_name }} | {{ Auth::user()->profile->job }}
                   <small>Member since {{ Auth::user()->created_at->format('d/m/Y') }}</small>
                 </p>
               </li>
@@ -246,7 +246,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ route('profile.show') }}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
                   <a href="{{ route('logout') }}"  onclick="event.preventDefault();

@@ -12,25 +12,11 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  @if (session('status'))
+      <div class="alert alert-success">
+          {{ session('status') }}
+      </div>
+  @endif
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-xs-6">
@@ -133,7 +119,7 @@
             <div class="box-body chat" id="chat-box">
               <!-- chat item -->
               <div class="item">
-                <img src="dist/img/user4-128x128.jpg" alt="user image" class="online">
+                <img src="{{ asset('bower_components/admin-lte/dist/img/user4-128x128.jpg') }}" alt="user image" class="online">
 
                 <p class="message">
                   <a href="#" class="name">
@@ -160,7 +146,7 @@
               <!-- /.item -->
               <!-- chat item -->
               <div class="item">
-                <img src="dist/img/user3-128x128.jpg" alt="user image" class="offline">
+                <img src="{{ asset('bower_components/admin-lte/dist/img/user3-128x128.jpg') }}" alt="user image" class="offline">
 
                 <p class="message">
                   <a href="#" class="name">
@@ -175,7 +161,7 @@
               <!-- /.item -->
               <!-- chat item -->
               <div class="item">
-                <img src="dist/img/user2-160x160.jpg" alt="user image" class="offline">
+                <img src="{{ asset('bower_components/admin-lte/dist/img/user2-160x160.jpg') }}" alt="user image" class="offline">
 
                 <p class="message">
                   <a href="#" class="name">
@@ -530,4 +516,9 @@
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
+@endsection
+
+@section('script')
+  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+  <script src="{{ asset('bower_components/admin-lte/dist/js/pages/dashboard.js') }}"></script>
 @endsection
