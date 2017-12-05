@@ -1,11 +1,12 @@
               <div class="{{ session('error_security') ? 'active' : '' }} tab-pane" id="security">
+                
+                <h3>Edit Email</h3>
+
+                <hr>
+
                 <form class="form-horizontal" action="{{ route('mail.update') }}" method="POST">
 
                   {{ csrf_field() }}
-
-                  <h3>Email</h3>
-
-                  <hr>
 
                   <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                     <label for="email" class="col-sm-2 control-label">Email</label>
@@ -57,7 +58,63 @@
                     </div>
                   </div>
 
-                  <hr>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-danger">Update</button>
+                    </div>
+                  </div>
+                </form>
+
+                <hr>
+
+                <h3>Edit Password</h3>
+
+                <hr>
+
+                <form class="form-horizontal" action="{{ route('password.update') }}" method="POST">
+
+                  {{ csrf_field() }}
+
+                  <div class="form-group {{ $errors->has('new_password') ? ' has-error' : '' }}">
+                    <label for="new_password" class="col-sm-2 control-label">New Password</label>
+
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="new_password" name="new_password"
+                         placeholder="New Password" required>
+                          @if ($errors->has('new_password'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('new_password') }}</strong>
+                              </span>
+                          @endif
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="new_password_confirmation" class="col-sm-2 control-label">Confirmation</label>
+
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation"
+                       placeholder="Retype Password" required ">
+                    </div>
+                  </div>
+
+                  <div class="form-group {{ $errors->has('current_password') ? ' has-error' : '' }}">
+                    <label for="current_password" class="col-sm-2 control-label">Password</label>
+
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="current_password" name="current_password"
+                       placeholder="Password" required>
+                       @if ($errors->has('current_password'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('current_password') }}</strong>
+                              </span>
+                          @endif
+                      <span class="help-block">
+                          you need to enter your current password  <br>
+                          after you change your password you will need to log in.     
+                      </span>
+                    </div>
+                  </div>
 
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">

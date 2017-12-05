@@ -114,32 +114,37 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function updatePassword(Request $request, User $user)
+    public function updatePassword(Request $request)
     {
         $rules = [
             'current_password' => 'required',
-            'password' => 'required|confirmed|min:8',
+            'new_password' => 'required|confirmed|min:8',
         ];
 
         $this->validate($request,$rules);
 
-        $hashedPassword = Auth::user()->password;
+        $user = Auth::user();
+
+        $hashedPassword = $user->password;
 
         if(Hash::check($request->current_password,$hashedPassword)){
-            $user->password = bcrypt($request->password);
+            $user->password = bcrypt($request->new_password);
         }
         else{
-            return $this->errorResponse(__('user.password'), 400);
+            return back()->with('error_security', 'Please enter the correct current password!');
         }
 
 
-        if(!$user->isDirty()){
-            return $this->errorResponse(__('user.update'), 422);
+        if($user->isClean()){
+            return back()->with('error_security', 'You need to specify a different value to update!');
         }
 
         $user->save();
 
-        return $this->showOne($user);
+        Auth::logout();
+        
+        return redirect()->route('login')->with('message', 
+                'The password has been updated successfully. Please log in');
 
     }
 }
