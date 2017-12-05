@@ -22,3 +22,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::name('profile.show')->get('/profile','UserController@showProfile');
 Route::name('profile.update')->post('/profile','UserController@updateProfile');
+Route::name('mail.update')->post('/mail','UserController@updateMail');

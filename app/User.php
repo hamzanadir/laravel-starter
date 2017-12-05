@@ -5,6 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Profile;
+use App\Mail\UserMailChanged;
+use Illuminate\Support\Facades\Mail;
 
 class User extends Authenticatable
 {
@@ -60,6 +62,19 @@ class User extends Authenticatable
         static::creating(function($user)
         {
             $user->verification_token = self::generateVerificationCode();
+        });
+
+        // send email when the user change the email
+        static::updated(function($user){
+            if($user->isDirty('email')){
+                retry(
+                    5,
+                    function()use($user) {
+                        Mail::to($user)->send(new UserMailChanged($user));
+                    },
+                    100
+                );
+            }
         });
     }
 
