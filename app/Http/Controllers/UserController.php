@@ -147,4 +147,34 @@ class UserController extends Controller
                 'The password has been updated successfully. Please log in');
 
     }
+
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function updateAvatar(Request $request)
+    {
+        $rules = [
+            'avatar' => 'required|image'
+        ];
+
+        $this->validate($request,$rules);
+
+        $profile = Auth::user()->profile;
+
+        $profile->avatar_path = $request->file('avatar')->store('avatars','public');
+
+
+        if($profile->isClean()){
+            return back()->with('error_security', 'You need to specify a different value to update!');
+        }
+
+        $profile->save();
+
+        return back()->with('status', 'Profile updated!');
+
+    }
 }

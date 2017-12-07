@@ -37,10 +37,11 @@
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="{{session('error_settings') || session('error_security') ? '' : 'active' }}"><a href="#activity" data-toggle="tab">Activity</a></li>
+              <li class="{{session('error_settings') || session('error_security')||session('error_avatar') ? '' : 'active' }}"><a href="#activity" data-toggle="tab">Activity</a></li>
               <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
               <li class="{{ session('error_settings') ? 'active' : '' }}"><a href="#settings" data-toggle="tab">Settings</a></li>
-              <li class="{{ session('error_security') ? 'active' : '' }}"><a href="#security" data-toggle="tab">security</a></li>
+              <li class="{{ session('error_security') ? 'active' : '' }}"><a href="#security" data-toggle="tab">Security</a></li>
+              <li class="{{ session('error_avatar') ? 'active' : '' }}"><a href="#avatar" data-toggle="tab">Profile Image</a></li>
             </ul>
             <div class="tab-content">
 
@@ -48,9 +49,7 @@
                 @include('user.profile._parts.tab_pane_timeline')
                 @include('user.profile._parts.tab_pane_settings')
                 @include('user.profile._parts.tab_pane_security')
-
-
-
+                @include('user.profile._parts.tab_pane_avatar')
 
               
             </div>

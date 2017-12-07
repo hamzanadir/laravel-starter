@@ -24,3 +24,4 @@ Route::name('profile.show')->get('/profile','UserController@showProfile');
 Route::name('profile.update')->post('/profile','UserController@updateProfile');
 Route::name('mail.update')->post('/mail','UserController@updateMail');
 Route::name('password.update')->post('/password','UserController@updatePassword');
+Route::name('avatar.update')->post('/avatar','UserController@updateAvatar');

@@ -1,4 +1,4 @@
-              <div class="{{ session('error_settings') || session('error_security') ? '' : 'active' }} tab-pane" id="activity">
+              <div class="{{ session('error_settings') || session('error_security') || session('error_avatar') ? '' : 'active' }} tab-pane" id="activity">
                 <!-- Post -->
                 <div class="post">
                   <div class="user-block">

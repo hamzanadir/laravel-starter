@@ -25,6 +25,7 @@ class CreateProfilesTable extends Migration
 	        $table->string('country')->nullable();
 	        $table->date('birth_day')->nullable();
 	        $table->string('zip_code')->nullable();
+	        $table->string('avatar_path')->nullable();
 	        $table->timestamps();
 
 	        $table->integer('user_id')->unsigned()->index();

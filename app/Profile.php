@@ -18,6 +18,7 @@ class Profile extends Model
 		'country',
 		'birth_day',
 		'zip_code',
+		'avatar_path',
     ];
     
     	/**
@@ -27,5 +28,9 @@ class Profile extends Model
 	public function user()
 	{
 		return $this->belongsTo(User::class);
+	}
+
+	public function avatar(){
+		return $this->avatar_path ? $this->avatar_path : 'avatars/default.jpeg';
 	}
 }
